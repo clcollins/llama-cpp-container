@@ -1,0 +1,13 @@
+.git
+.github
+test
+docs
+deploy
+examples
+models
+*.gguf
+.env
+README.md
+CLAUDE.md
+CONVENTIONS.md
+Makefile
