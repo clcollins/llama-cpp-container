@@ -35,7 +35,7 @@ RUN arch="$(uname -m)" \
   && mkdir -p /tmp/llama \
   && tar -C /tmp/llama -xzf /tmp/llama.tar.gz \
   && cp /tmp/llama/llama-${LLAMA_CPP_VERSION}/llama-* /usr/local/bin/ \
-  && cp /tmp/llama/llama-${LLAMA_CPP_VERSION}/lib*.so* /usr/local/lib/ \
+  && cp /tmp/llama/llama-${LLAMA_CPP_VERSION}/lib*.so* /usr/lib64/ \
   && ldconfig \
   && rm -rf /tmp/llama /tmp/llama.tar.gz
 
