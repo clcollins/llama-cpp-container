@@ -21,7 +21,7 @@ Decisions:
 
 ## Repository Layout Created
 
-```
+```text
 llama-cpp-container/
 ├── .github/workflows/
 │   ├── ci.yaml
@@ -64,8 +64,8 @@ llama-cpp-container/
 - Arch-aware download: `x64` → `x86_64`, `arm64` → `aarch64`.
 - Asset URL:
   `https://github.com/ggml-org/llama.cpp/releases/download/${VERSION}/llama-${VERSION}-bin-ubuntu-${ARCH}.tar.gz`
-- Extracts `build/bin/llama-*` into `/usr/local/bin/` and `build/bin/*.so`
-  into `/usr/local/lib/`; runs `ldconfig`.
+- Extracts `llama-${VERSION}/llama-*` into `/usr/local/bin/` and
+  `llama-${VERSION}/lib*.so*` into `/usr/local/lib/`; runs `ldconfig`.
 - `ENV LLAMA_ARG_HOST=0.0.0.0 LLAMA_ARG_PORT=8080`.
 - `EXPOSE 8080`; `ENTRYPOINT ["llama-server"]`.
 - All 5 required OCI labels present.
@@ -119,10 +119,10 @@ Every check required by `CONVENTIONS.md` is wired up:
    forward-compatible. The `RUN llama-server --version` line at the end of
    the Containerfile validates this at build time — if incompatible, the
    build fails immediately.
-2. **Release asset structure**: this plan assumes the tarball contains
-   `build/bin/llama-*` and `build/bin/*.so`. Verify on the first `make
-   build`; adjust the `cp` paths in the Containerfile if the archive layout
-   differs.
+2. **Release asset structure**: the tarball contains
+   `llama-${VERSION}/llama-*` and `llama-${VERSION}/lib*.so*`. Future
+   releases may restructure; adjust the `cp` paths in the Containerfile if
+   the archive layout changes.
 3. **Models are not bundled**: users must mount a GGUF file. The Deployment
    expects `/models/model.gguf` — operators must either rename their model
    or edit `LLAMA_ARG_MODEL` in `deploy/llama.Deployment.yaml`.

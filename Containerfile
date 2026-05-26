@@ -34,8 +34,8 @@ RUN arch="$(uname -m)" \
   && curl -fsSL "https://github.com/ggml-org/llama.cpp/releases/download/${LLAMA_CPP_VERSION}/llama-${LLAMA_CPP_VERSION}-bin-ubuntu-${target_arch}.tar.gz" -o /tmp/llama.tar.gz \
   && mkdir -p /tmp/llama \
   && tar -C /tmp/llama -xzf /tmp/llama.tar.gz \
-  && cp /tmp/llama/build/bin/llama-* /usr/local/bin/ \
-  && cp /tmp/llama/build/bin/*.so /usr/local/lib/ \
+  && cp /tmp/llama/llama-${LLAMA_CPP_VERSION}/llama-* /usr/local/bin/ \
+  && cp /tmp/llama/llama-${LLAMA_CPP_VERSION}/lib*.so* /usr/local/lib/ \
   && ldconfig \
   && rm -rf /tmp/llama /tmp/llama.tar.gz
 
