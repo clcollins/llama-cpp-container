@@ -1,0 +1,6 @@
+.env
+models/
+*.gguf
+node_modules/
+__pycache__/
+*.pyc
